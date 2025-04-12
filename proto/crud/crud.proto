@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package grpc;
+
+option go_package = "gilmanov.grpc.v1:grpcv1";
+
+service GrpcServer {
+  rpc GetUser (GetAllUsersRequest) returns (GetUsersResponse);
+}
+
+message GetAllUsersRequest {
+}
+
+message GetUsersResponse {
+  string status = 1;
+  string error = 2;
+  repeated User users = 3;
+}
+
+message User {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
